@@ -8,7 +8,7 @@ pipeline {
         }
         stage ('BUILD') {
             steps {
-                sh 'echo "BUILD SUCCESS"'
+                sh 'echo "BUILD SESS"'
             }
         }
         stage ('TEST') {
