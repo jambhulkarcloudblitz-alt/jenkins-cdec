@@ -64,3 +64,21 @@ mvn  sonar:sonar \\
         //                 -Dsonar.projectName=\'studentapp\' \\
         //                 -Dsonar.host.url=http://16.192.149.200:9000 \\
         //                 -Dsonar.token=sqp_a8a27fe1abf989ce72a2c1abaea522e9d0adb1ac'''  
+
+
+
+        sqp_82a90f3402834f9290a60a8cb8d905ecbbd45e3b
+
+
+        mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=studentapp \
+  -Dsonar.projectName='studentapp' \
+  -Dsonar.host.url=http://54.88.140.52:9000 \
+  -Dsonar.token=sqp_82a90f3402834f9290a60a8cb8d905ecbbd45e3b
+
+
+  mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+  -Dsonar.projectKey=studentapp \
+  -Dsonar.projectName=studentapp \
+  -Dsonar.host.url=http://54.88.140.52:9000 \
+  -Dsonar.token='YOUR_TOKEN'
