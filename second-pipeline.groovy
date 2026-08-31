@@ -30,10 +30,10 @@ pipeline {
                 sh 'echo "TEST SUCCESS"'
             }
         }
-        // stage ('S3-Upload') {
-        //     steps {
-        //         sh 'aws s3 cp backed/target/ s3://s3-upload-6741/student.jar'
-        //     }
-        // }
+        stage ('S3-Upload') {
+            steps {
+                sh 'aws s3 cp backed/target/student-registration-backend-0.0.1-SNAPSHOT.jar s3://s3-upload-6741/student.jar'
+            }
+        }
     }
 }
