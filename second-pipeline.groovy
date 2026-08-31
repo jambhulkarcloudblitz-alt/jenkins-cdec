@@ -32,7 +32,7 @@ pipeline {
         }
         stage ('S3-Upload') {
             steps {
-                sh 'aws s3 cp backed/target/student-registration-backend-0.0.1-SNAPSHOT.jar s3://s3-upload-6741/student.jar'
+                sh 'aws s3 cp backend/target/student-registration-backend-0.0.1-SNAPSHOT.jar s3://s3-upload-6741/student.jar'
             }
         }
     }
