@@ -13,15 +13,24 @@ pipeline {
                         '''
             }
         }
+        // stage ('TEST') {
+        //     steps {
+        //         sh '''cd backend
+        //          mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \\
+        //         -Dsonar.projectKey=studentapp \\
+        //         -Dsonar.projectName=studentapp \\
+        //         -Dsonar.host.url=http://3.92.63.71:9000  \\
+        //         -Dsonar.token=sqp_2eb5833ca50b9121d0fd14a09f160197873e495e'''
+
+        //     }
+        // }
+
         stage ('TEST') {
             steps {
-                sh '''cd backend
-                 mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \\
-                -Dsonar.projectKey=studentapp \\
-                -Dsonar.projectName=studentapp \\
-                -Dsonar.host.url=http://3.92.63.71:9000  \\
-                -Dsonar.token=sqp_2eb5833ca50b9121d0fd14a09f160197873e495e'''
-
+                withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonar-cred') {
+                    sh '''cd backend
+                          mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'''
+                    }
             }
         }
         // stage ('TEST'){
