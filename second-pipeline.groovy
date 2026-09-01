@@ -16,45 +16,24 @@ pipeline {
         // stage ('TEST') {
         //     steps {
         //         sh '''cd backend
-        //         mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-        //         -Dsonar.projectKey=studentapp \
-        //         -Dsonar.projectName=studentapp \
-        //         -Dsonar.host.url=http://54.83.247.131:9000  \
-        //         -Dsonar.token=sqp_1a557aac836ae03be1ccebf3d429645a6ee310d6'''
+        //                 mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+        //                 -Dsonar.projectKey=studentapp \
+        //                 -Dsonar.projectName=studentapp \
+        //                 -Dsonar.host.url=http://54.88.140.52:9000 \
+        //                 -Dsonar.token='YOUR_TOKEN'
+
+        //                 '''
         //     }
         // }
-        stage ('TEST') {
-            steps {
-                withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonar-cred') {
-                    sh '''cd backend
-                    mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-                    -Dsonar.projectKey=studentapp '''
-                }
-            }
-        }
-        stage ('Quality_gate') {
-            steps {
-                timeout(10) {
-                            waitForQualityGate abortPipeline: true, credentialsId: 'sonar-cred'
-                        }
-                
-            }
-        }
-
-
-
-
-
-
-        stage ('TEST-01'){
+        stage ('TEST'){
             steps {
                 sh 'echo "TEST SUCCESS"'
             }
         }
-        // stage ('S3-Upload') {
-        //     steps {
-        //         sh 'aws s3 cp backend/target/student-registration-backend-0.0.1-SNAPSHOT.jar s3://s3-upload-6741/student.jar'
-        //     }
-        // }
+        stage ('S3-Upload') {
+            steps {
+                sh 'aws s3 cp backend/target/student-registration-backend-0.0.1-SNAPSHOT.jar s3://s3-upload-6741/student.jar'
+            }
+        }
     }
 }
