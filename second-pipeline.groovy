@@ -46,7 +46,7 @@ pipeline {
 
 
 
-        stage ('TEST'){
+        stage ('TEST-01'){
             steps {
                 sh 'echo "TEST SUCCESS"'
             }
