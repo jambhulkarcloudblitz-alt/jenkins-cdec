@@ -29,7 +29,8 @@ pipeline {
             steps {
                 withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonar-cred') {
                     sh '''cd backend
-                          mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'''
+                          mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+                          -Dsonar.projectKey=studentapp'''
                     }
             }
         }
