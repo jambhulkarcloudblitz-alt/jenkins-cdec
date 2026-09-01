@@ -32,17 +32,25 @@ pipeline {
                 }
             }
         }
+        stage ('Quality_gate') {
+            steps {
+                timeout(10) {
+                            waitForQualityGate abortPipeline: true, credentialsId: 'sonar-cred'
+                        }
+                
+            }
+        }
 
 
 
 
 
 
-        // stage ('TEST'){
-        //     steps {
-        //         sh 'echo "TEST SUCCESS"'
-        //     }
-        // }
+        stage ('TEST'){
+            steps {
+                sh 'echo "TEST SUCCESS"'
+            }
+        }
         // stage ('S3-Upload') {
         //     steps {
         //         sh 'aws s3 cp backend/target/student-registration-backend-0.0.1-SNAPSHOT.jar s3://s3-upload-6741/student.jar'
