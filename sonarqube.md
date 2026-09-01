@@ -42,7 +42,7 @@ vim conf/sonar.properties
 >> sonar.jdbc.username=linux
 >> sonar.jdbc.password=redhat
 >> sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
-useradd sonar -m
+  useradd sonar -m
 chown sonar:sonar -R /opt/sonar
 su sonar
 cd /opt/sonar/bin/linux-x86-64
@@ -80,8 +80,8 @@ mvn  sonar:sonar \\
   mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
   -Dsonar.projectKey=studentapp \
   -Dsonar.projectName=studentapp \
-  -Dsonar.host.url=http://54.88.140.52:9000 \
-  -Dsonar.token='YOUR_TOKEN'
+  -Dsonar.host.url=http://3.92.63.71:9000  \
+  -Dsonar.token=sqp_2eb5833ca50b9121d0fd14a09f160197873e495e
 
 
 mvn clean verify sonar:sonar \
@@ -89,3 +89,10 @@ mvn clean verify sonar:sonar \
   -Dsonar.projectName='studentapp' \
   -Dsonar.host.url=http://54.83.247.131:9000 \
   -Dsonar.token=sqp_1a557aac836ae03be1ccebf3d429645a6ee310d6
+
+
+  mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=studentapp \
+  -Dsonar.projectName='studentapp' \
+  -Dsonar.host.url=http://3.92.63.71:9000 \
+  -Dsonar.token=sqp_2eb5833ca50b9121d0fd14a09f160197873e495e
