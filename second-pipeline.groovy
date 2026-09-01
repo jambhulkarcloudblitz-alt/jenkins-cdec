@@ -16,10 +16,10 @@ pipeline {
         stage ('TEST') {
             steps {
                 sh '''cd backend
-                mvn  sonar:sonar \\
-                -Dsonar.projectKey=studentapp \\
-                -Dsonar.projectName=\'studentapp\' \\
-                -Dsonar.host.url=http://54.83.247.131:9000 \\
+                mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+                -Dsonar.projectKey=studentapp \
+                -Dsonar.projectName=studentapp \
+                -Dsonar.host.url=http://54.83.247.131:9000  \
                 -Dsonar.token=sqp_1a557aac836ae03be1ccebf3d429645a6ee310d6'''
             }
         }

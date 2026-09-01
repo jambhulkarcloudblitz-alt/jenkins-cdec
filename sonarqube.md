@@ -82,3 +82,10 @@ mvn  sonar:sonar \\
   -Dsonar.projectName=studentapp \
   -Dsonar.host.url=http://54.88.140.52:9000 \
   -Dsonar.token='YOUR_TOKEN'
+
+
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=studentapp \
+  -Dsonar.projectName='studentapp' \
+  -Dsonar.host.url=http://54.83.247.131:9000 \
+  -Dsonar.token=sqp_1a557aac836ae03be1ccebf3d429645a6ee310d6
