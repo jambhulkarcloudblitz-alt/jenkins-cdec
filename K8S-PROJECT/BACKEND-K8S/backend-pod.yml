@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-app-deploy
+spec:
+  replicas: 2
+  selector:
+    matchExpressions:
+      - {key: app, operator: In, values: [student-app]}
+  template:
+    metadata:
+      name: pod-01
+      labels:
+        app: student-app
+    spec:
+      containers:
+        - name: student-app-container
+          image: shubhamjambhulkar07/easy-backend-1:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: student-app-svc
+spec:
+  selector:
+    app: student-app
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: student-app-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: student-app-deploy
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50  
+
